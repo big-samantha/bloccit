@@ -3,13 +3,13 @@
 <div class="row">
   <div class="col-md-8">
     <h3>Change email or password.</h3>
-    <%= form_for(resource, as: resource_name, url: registration_path(:resource_name), html: { method: :patch }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :patch }) do |f| %>
       <%= devise_error_messages! %>
       <div class="form-group">
         <%= f.label :email %>
         <%= f.email_field :email, class: 'form-control', placeholder: "Enter email" %>
       </div>
-      <% if devise_mapping.confirmable? && resource.pending_confirmation? %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div class="form-group" >
           <p> Waiting confirmation for:</p>
           <%= resource.unconfirmed_email %>
@@ -44,7 +44,7 @@
 
     <h3>Cancel my account</h3>
     <div class="form-group">
-      <p><%= button_to "Cancel my account", registration_path(:resource_name), data: { confirm: "Are you sure" }, method: :delete, class: 'btn btn-danger' %></p>
+      <p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure" }, method: :delete, class: 'btn btn-danger' %></p>
     </div>
   </div>
 </div>
