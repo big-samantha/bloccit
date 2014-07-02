@@ -36,7 +36,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   process :resize_to_fit => [50, 50]
   # end
 
-  process :resize_to_fill [90,90]
+  process resize_to_fill: [90,90]
 
   version :tiny do
     process resize_to_fill: [20,20]

@@ -20,3 +20,5 @@
 /config/application.yml
 
 .ruby-version
+
+public/uploads
