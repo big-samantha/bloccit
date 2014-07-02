@@ -10,6 +10,7 @@
     <% @posts.each do |post| %>
       <div class="media">
         <div class="media-body">
+          <%= image_tag(post.postimage.thumb.url) if post.postimage? %>
           <h4 class="media-heading">
             <%= link_to (markdown post.title), [@topic, post] %>
           </h4>
