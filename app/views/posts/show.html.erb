@@ -11,6 +11,13 @@
       <%= @post.user.name %>
     </small>
     <p><%= markdown @post.body %></p>
+    <ul class="media-list">
+    <p><%= render partial: 'comments/form', locals: { topic: @topic, post: @post, comment: @comment }%></p>
+    </ul>
+    <h4>Comments:</h4>
+    <ul class="list-group">
+      <p><%= render partial: 'comment', collection: @comments %></p>
+    </ul>
   </div>
   <div class="col-md-4"%>
     <% if policy(@post).edit? %>
