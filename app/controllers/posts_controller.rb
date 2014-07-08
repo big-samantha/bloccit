@@ -1,4 +1,8 @@
 class PostsController < ApplicationController
+  def post_params
+    params.require(:post).permit(:title, :body, :postimage)
+  end
+
   def show
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
@@ -49,7 +53,19 @@ class PostsController < ApplicationController
     end
   end
 
-  def post_params
-    params.require(:post).permit(:title, :body, :postimage)
+  def destroy
+    @topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:id])
+
+    title = @post.title
+    authorize @post
+    
+    if @post.destroy
+      flash[:notice] = "\"#{title}\" was deleted successfully."
+      redirect_to @topic
+    else
+      flash[:notice] = 'There was an error deleting the post.'
+      render :show
+    end
   end
 end
