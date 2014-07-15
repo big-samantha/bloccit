@@ -16,6 +16,7 @@
 /tmp
 *.swp
 .DS_Store
+*.swo
 
 # Ignore application configuration
 /config/application.yml
