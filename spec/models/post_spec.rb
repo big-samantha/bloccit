@@ -5,7 +5,7 @@ describe Post do
 
     before do
 
-      @post = Post.new(title: 'post title', body: 'Post bodies must be pretty long.')#, topic_id: 1, user_id: 1)#, topic: Topic.first, user: User.first)
+      @post = post_without_user
       allow(@post).to receive(:create_vote)
       @post.save
 
@@ -30,5 +30,28 @@ describe Post do
         expect( @post.points ).to eq(1) # 3 - 2
       end
     end
+
+    describe 'creation' do
+      it "generates an automatic up-vote" do
+        user = authenticated_user
+        post = Post.create(title: 'Post Title', body: 'This is a small post body string', user: user)
+        expect( post.up_votes ).to eq(1)
+      end
+    end
   end
+end
+
+def post_without_user
+  post = Post.new(title: 'Post title', body: 'Post bodies must be pretty long.')
+  allow(post).to receive(:create_vote)
+  post.save
+  post
+end
+
+def authenticated_user
+  email = "email#{rand}@fake.com"
+  user = User.new(email: email, password: 'password' )
+  user.skip_confirmation!
+  user.save
+  user
 end
