@@ -1,5 +1,4 @@
 require 'rails_helper'
-#require 'faker'
 
 describe Post do
   describe "vote methods" do
@@ -10,29 +9,9 @@ describe Post do
       allow(@post).to receive(:create_vote)
       @post.save
 
-      #@user = User.new(
-      #  name:     Faker::Name.name,
-      #  email:    Faker::Internet.email,
-      #  password: Faker::Lorem.characters(10)
-      #)
-      #@user.skip_confirmation!
-      #@user.save
-
-      #@topic = Topic.create(
-      #  name:         Faker::Lorem.sentence,
-      #  description:  Faker::Lorem.paragraph
-      #)
-
-
       3.times { @post.votes.create(value: 1) }
       2.times { @post.votes.create(value: -1) }
     end
-
-#    describe 'post is valid' do
-#      it 'validates' do
-#        expect(@post.valid?).to eq(true)
-#      end
-#    end
 
     describe '#up_votes' do
       it "counts the number of votes with value = 1" do
