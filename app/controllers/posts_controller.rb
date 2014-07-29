@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    # find post from topic to fix bug
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
     @comments = @post.comments
