@@ -14,7 +14,7 @@ describe FavoritesController do
 
   describe '#create' do
     it "creates a favorite for the current user and specified post" do
-      expect( @user.favorites.find_by_post_id(post.id) ).to eq(nil)
+      expect( @user.favorites.find_by_post_id(@post.id) ).to eq(nil)
 
       post :create, { post_id: @post.id }
 
