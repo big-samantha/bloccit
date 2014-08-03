@@ -25,8 +25,7 @@ describe Comment do
     end
 
     it "does not send emails to users who haven't" do
-      expect ( FavoriteMailer)
-        .not_to receive(:new_comment)
+      expect(FavoriteMailer).not_to receive(:new_comment)
 
       @comment.save
     end
