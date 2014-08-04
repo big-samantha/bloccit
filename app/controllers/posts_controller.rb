@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     # find post from topic to fix bug
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
+    authorize @topic
     @comments = @post.comments
     @comment = Comment.new
   end

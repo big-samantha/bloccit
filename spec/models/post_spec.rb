@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 describe Post do
 
   include TestFactories
