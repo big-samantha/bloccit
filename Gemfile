@@ -51,6 +51,7 @@ gem 'will_paginate', '~> 3.0.5'
 
 group :test do
   gem 'rspec-rails'
+  gem 'capybara'
 end
 
 # Use ActiveModel has_secure_password
