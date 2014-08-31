@@ -9,8 +9,6 @@ class Post < ActiveRecord::Base
   default_scope { order('rank DESC') }
   scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
   
-  after_create :create_vote 
-  
   mount_uploader :postimage, PostimageUploader
 
   def up_votes
@@ -36,8 +34,6 @@ class Post < ActiveRecord::Base
   validates :body, length: { minimum: 20 }, presence: true
 #  validates :topic, presence: true
 #  validates :user, presence: true
-
-  private
 
   def create_vote
     user.votes.create(value: 1, post: self)

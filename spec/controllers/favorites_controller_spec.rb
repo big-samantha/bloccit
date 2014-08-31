@@ -7,8 +7,8 @@ describe FavoritesController do
 
   before do
     @topic = Topic.create
-    @post = post_without_user( {topic: @topic} )
-    @user = authenticated_user
+    @user = create(:user)
+    @post = create(:post, user: @user)
     sign_in @user
   end
 

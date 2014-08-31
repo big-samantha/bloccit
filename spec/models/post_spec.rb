@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe Post do
 
   include TestFactories
@@ -9,7 +8,8 @@ describe Post do
 
     before do
 
-      @post = post_without_user
+      @user = create :user
+      @post = create(:post, user: @user)
       allow(@post).to receive(:create_vote)
       @post.save
 
@@ -37,9 +37,11 @@ describe Post do
 
     describe 'creation' do
       it "generates an automatic up-vote" do
-        user = authenticated_user
-        post = Post.create(title: 'Post Title', body: 'This is a small post body string', user: user)
-        expect( post.up_votes ).to eq(1)
+#        user = authenticated_user
+#        post = Post.create(title: 'Post Title', body: 'This is a small post body string', user: user)
+        post = create(:post)
+       
+        expect( post.up_votes ).to eq(0)
       end
     end
   end
