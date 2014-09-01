@@ -7,14 +7,14 @@ describe Comment do
     before do
       @post = create :post
       @user = create :user
-      @comment = create(:comment, post: @post, user_id: @user.id)
+      @comment = build(:comment, post: @post, user_id: @user.id)
     end
 
     context "with user's permission" do
       it "sends an email to users who have favorited the post" do
         @user.favorites.where(post: @post).create
 
-        allow( FavoriteMailer )
+        expect( FavoriteMailer )
         .to receive(:new_comment)
         .with(@user, @post, @comment)
         .and_return( double(deliver: true) )
