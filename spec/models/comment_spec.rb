@@ -7,7 +7,7 @@ describe Comment do
     before do
       @post = create :post
       @user = create :user
-      @comment = build(:comment, post: @post, user_id: @user.id)
+      @comment = build(:comment, post_id: @post.id, user_id: @user.id)
     end
 
     context "with user's permission" do
